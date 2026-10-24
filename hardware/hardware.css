@@ -1,0 +1,82 @@
+/* Nodara Hardware: técnico e preciso. Branco puro, sans geométrica, rótulos em monoespaçada, cantos retos. */
+:root {
+  --bg: #FFFFFF;
+  --surface: #FAFAFA;
+  --ink: #111111;
+  --muted: #5F5F5F;
+  --line: #E6E6E6;
+  --focus: #111111;
+  --font-body: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Geist", "Inter", system-ui, sans-serif;
+  --font-label: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --radius: 2px;
+}
+
+.display { font-weight: 500; letter-spacing: -.045em; }
+.label { letter-spacing: .04em; }
+
+/* abertura */
+.hero { padding: clamp(80px, 12vw, 152px) 0 clamp(64px, 9vw, 112px); }
+.hero .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: end; }
+.hero h1 { font-size: clamp(44px, 7vw, 92px); }
+.hero .lead { margin-top: 28px; }
+.hero .actions { margin-top: 40px; }
+
+/* ficha técnica ao lado do título */
+.spec { border-top: 1px solid var(--ink); font-family: var(--font-label); font-size: 13px; }
+.spec div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.spec dt { color: var(--muted); }
+
+/* equipamentos */
+.equip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.equip article { padding: 32px 28px 36px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.equip .label { display: block; margin-bottom: 48px; }
+.equip h3 { font-size: 20px; font-weight: 500; letter-spacing: -.02em; margin-bottom: 10px; }
+.equip p { color: var(--muted); font-size: 15px; }
+
+/* processo em linha */
+.steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; counter-reset: p; }
+.steps li { counter-increment: p; padding-top: 20px; border-top: 1px solid var(--ink); }
+.steps li::before { content: counter(p, decimal-leading-zero); display: block; font-family: var(--font-label); font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.steps h3 { font-size: 17px; font-weight: 500; margin-bottom: 6px; }
+.steps p { color: var(--muted); font-size: 15px; }
+
+/* faixa final */
+.band { padding: 96px 0; border-top: 1px solid var(--line); }
+.band .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 32px; }
+.band h2 { font-size: clamp(32px, 4.4vw, 56px); max-width: 640px; }
+.note-cross { margin-top: 20px; font-size: 15px; color: var(--muted); }
+.note-cross a { color: var(--ink); }
+
+/* páginas internas */
+.page-head { padding: clamp(72px, 10vw, 120px) 0 56px; }
+.page-head h1 { font-size: clamp(40px, 6vw, 76px); max-width: 860px; }
+.page-head .lead { margin-top: 24px; }
+
+/* tabela de serviços por equipamento */
+.catalog { border-top: 1px solid var(--ink); }
+.catalog section { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--line); scroll-margin-top: calc(var(--header-h) + 16px); }
+.catalog h2 { font-size: 24px; font-weight: 500; letter-spacing: -.03em; }
+.catalog h2 .label { display: block; margin-bottom: 10px; }
+.catalog ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+.catalog li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.catalog li:nth-last-child(-n+2) { border-bottom: 0; }
+
+.aside { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; padding: 64px 0 112px; border-top: 1px solid var(--ink); }
+.aside dl { display: grid; gap: 24px; align-content: start; }
+.aside dt { font-family: var(--font-label); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.aside dd { font-size: 15px; }
+.aside dd a { color: var(--ink); }
+
+@media (max-width: 960px) {
+  .equip, .steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  .hero .grid, .aside, .catalog section { grid-template-columns: 1fr; gap: 40px; }
+  .catalog section { gap: 20px; }
+}
+@media (max-width: 560px) {
+  .equip, .steps, .catalog ul { grid-template-columns: 1fr; }
+  .equip .label { margin-bottom: 24px; }
+  .catalog li:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+}

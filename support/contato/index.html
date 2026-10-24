@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR" data-site="support" data-page="contato">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitar suporte · Nodara Support</title>
+<meta name="description" content="Descreva o problema e receba o retorno do Nodara Support com diagnóstico, prazo e valor.">
+<meta name="theme-color" content="#F7F6F3">
+<link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../support.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="module" src="../../shared/nodara.js"></script>
+</head>
+<body>
+<nodara-header></nodara-header>
+
+<main id="conteudo">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="label">Solicitar suporte</span>
+      <h1 class="display" style="margin-top:24px">Conte o que está acontecendo.</h1>
+      <p class="lead">Respondemos pelo e-mail ou telefone informado, com o diagnóstico provável e os próximos passos.</p>
+    </div>
+  </section>
+
+  <section class="wrap aside">
+    <dl>
+      <div><dt>Atendimento</dt><dd>Remoto ou presencial em Belo Horizonte – MG.</dd></div>
+      <div><dt>Antes de começar</dt><dd>Você recebe a solução proposta, o prazo e o valor para aprovar.</dd></div>
+      <div><dt>Equipamento quebrado?</dt><dd>Reparos físicos são feitos pelo <a href="../../hardware/orcamento/" data-nd="hardware/orcamento">Nodara Hardware</a>.</dd></div>
+    </dl>
+
+    <div>
+      <form class="form" data-form="Solicitação de suporte" novalidate>
+        <div class="form-grid">
+          <div class="field full">
+            <fieldset>
+              <legend>Atendimento para</legend>
+              <div class="choices">
+                <label><input type="radio" name="perfil" value="Empresa" required><span>Empresa</span></label>
+                <label><input type="radio" name="perfil" value="Pessoa física"><span>Pessoa física</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="field"><label for="empresa">Empresa <span class="opt">(opcional)</span></label><input id="empresa" name="empresa" autocomplete="organization"></div>
+          <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="telefone">Telefone <span class="opt">(opcional)</span></label><input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel"></div>
+          <div class="field full">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto" required>
+              <option value="">Selecione</option>
+              <option>Problema em computador ou sistema</option>
+              <option>Rede, internet ou Wi‑Fi</option>
+              <option>E-mail, Microsoft 365 ou Google Workspace</option>
+              <option>Configuração de computador ou impressora</option>
+              <option>Segurança e backup</option>
+              <option>Suporte mensal para empresa</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field full"><label for="mensagem">Descrição</label><textarea id="mensagem" name="mensagem" required placeholder="O que acontece, desde quando e o que já foi tentado."></textarea></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="hp-s">Não preencha</label><input id="hp-s" name="_honey" tabindex="-1" autocomplete="off"></div>
+        <div class="form-foot">
+          <button type="submit" class="btn">Enviar solicitação</button>
+          <p class="form-note">Seus dados são usados apenas para responder a esta solicitação.</p>
+        </div>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="form-done" hidden>
+        <h2 class="display" tabindex="-1">Solicitação enviada.</h2>
+        <p>Obrigado. Retornaremos pelo contato informado.</p>
+        <button type="button" class="link">Enviar outra solicitação</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nodara-footer></nodara-footer>
+</body>
+</html>

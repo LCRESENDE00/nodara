@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR" data-site="hardware" data-page="orcamento">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitar orçamento · Nodara Hardware</title>
+<meta name="description" content="Peça um orçamento de manutenção ou reparo para notebook, desktop, impressora ou impressora 3D.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../hardware.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="module" src="../../shared/nodara.js"></script>
+</head>
+<body>
+<nodara-header></nodara-header>
+
+<main id="conteudo">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="label">Orçamento</span>
+      <h1 class="display" style="margin-top:24px">Solicitar orçamento.</h1>
+      <p class="lead">Quanto mais detalhes sobre o defeito, mais preciso o primeiro retorno.</p>
+    </div>
+  </section>
+
+  <section class="wrap aside">
+    <dl>
+      <div><dt>Prazo</dt><dd>Informado no orçamento, após o diagnóstico.</dd></div>
+      <div><dt>Aprovação</dt><dd>Nenhum reparo é feito sem o seu aceite.</dd></div>
+      <div><dt>Garantia</dt><dd>90 dias nos serviços executados.</dd></div>
+      <div><dt>Sistema ou rede?</dt><dd><a href="../../support/contato/" data-nd="support/contato">Solicite suporte no Nodara Support</a>.</dd></div>
+    </dl>
+
+    <div>
+      <form class="form" data-form="Solicitação de orçamento" novalidate>
+        <div class="form-grid">
+          <div class="field full">
+            <fieldset>
+              <legend>Equipamento</legend>
+              <div class="choices">
+                <label><input type="radio" name="equipamento" value="Notebook" required><span>Notebook</span></label>
+                <label><input type="radio" name="equipamento" value="Desktop"><span>Desktop</span></label>
+                <label><input type="radio" name="equipamento" value="Impressora"><span>Impressora</span></label>
+                <label><input type="radio" name="equipamento" value="Impressora 3D"><span>Impressora 3D</span></label>
+                <label><input type="radio" name="equipamento" value="Outro"><span>Outro</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="field full"><label for="modelo">Marca e modelo</label><input id="modelo" name="modelo" required placeholder="Ex.: Dell Inspiron 15, HP LaserJet M1132, Bambu Lab A1"></div>
+          <div class="field full"><label for="defeito">Defeito</label><textarea id="defeito" name="defeito" required placeholder="O que acontece, quando começou e se houve queda, líquido ou atualização."></textarea></div>
+          <div class="field full">
+            <fieldset>
+              <legend>Atendimento</legend>
+              <div class="choices">
+                <label><input type="radio" name="atendimento" value="Levar à bancada" required><span>Levar à bancada</span></label>
+                <label><input type="radio" name="atendimento" value="Visita técnica"><span>Visita técnica</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="telefone">Telefone <span class="opt">(opcional)</span></label><input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel"></div>
+          <div class="field"><label for="bairro">Bairro <span class="opt">(para visita)</span></label><input id="bairro" name="bairro" autocomplete="address-level3"></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="hp-h">Não preencha</label><input id="hp-h" name="_honey" tabindex="-1" autocomplete="off"></div>
+        <div class="form-foot">
+          <button type="submit" class="btn">Enviar pedido de orçamento</button>
+          <p class="form-note">Seus dados são usados apenas para responder a este pedido.</p>
+        </div>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="form-done" hidden>
+        <h2 class="display" tabindex="-1">Pedido recebido.</h2>
+        <p>Obrigado. Retornaremos pelo contato informado com os próximos passos.</p>
+        <button type="button" class="link">Enviar outro pedido</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nodara-footer></nodara-footer>
+</body>
+</html>

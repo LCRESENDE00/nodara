@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR" data-site="marca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nodara</title>
+<meta name="description" content="Nodara Support, suporte técnico e serviços de TI. Nodara Hardware, manutenção e reparo de equipamentos. Belo Horizonte – MG.">
+<meta name="theme-color" content="#FAFAF9">
+<link rel="icon" href="shared/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&family=Geist:wght@400;500&family=Geist+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/base.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="module" src="shared/nodara.js"></script>
+<style>
+  body { min-height: 100svh; display: flex; flex-direction: column; }
+  .top { display: flex; align-items: center; height: 72px; border-bottom: 1px solid var(--line); }
+  .top .nd-mark { border: 0; padding: 0; }
+  .split { flex: 1; display: grid; grid-template-columns: 1fr 1fr; }
+  .site {
+    display: flex; flex-direction: column; justify-content: space-between; gap: 64px;
+    padding: clamp(40px, 7vw, 96px) clamp(24px, 6vw, 80px);
+    text-decoration: none; transition: background .4s var(--ease);
+  }
+  .site + .site { border-left: 1px solid var(--line); }
+  .site:hover { background: #F3F3F1; }
+  .site h2 { font-size: clamp(48px, 7vw, 88px); line-height: 1; letter-spacing: -.03em; font-weight: 400; }
+  .site p { color: var(--muted); max-width: 340px; margin-top: 20px; }
+  .site .go { align-self: flex-start; display: inline-flex; gap: 10px; font-size: 15px; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color .2s, gap .3s var(--ease); }
+  .site:hover .go { border-color: var(--ink); gap: 16px; }
+  .support h2 { font-family: "Instrument Serif", Georgia, serif; }
+  .hardware h2 { font-family: "Geist", var(--font-body); letter-spacing: -.05em; }
+  .hardware .label { font-family: "Geist Mono", ui-monospace, monospace; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .site + .site { border-left: 0; border-top: 1px solid var(--line); }
+    .site { gap: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><span class="nd-mark">NODARA</span></div></div>
+
+<main id="conteudo" class="split">
+  <a class="site support" href="support/" data-nd="support">
+    <div>
+      <span class="label">01 — Support</span>
+    </div>
+    <div>
+      <h2>Support</h2>
+      <p>Suporte técnico e serviços de TI para empresas e pessoas.</p>
+    </div>
+    <span class="go">Acessar o Support <span aria-hidden="true">→</span></span>
+  </a>
+  <a class="site hardware" href="hardware/" data-nd="hardware">
+    <div>
+      <span class="label">02 — Hardware</span>
+    </div>
+    <div>
+      <h2>Hardware</h2>
+      <p>Manutenção, diagnóstico e reparo de notebooks, desktops e impressoras.</p>
+    </div>
+    <span class="go">Acessar o Hardware <span aria-hidden="true">→</span></span>
+  </a>
+</main>
+
+<nodara-footer></nodara-footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "nodara",
+  "private": true,
+  "description": "Nodara Support e Nodara Hardware: dois sites minimalistas da marca Nodara (HTML, CSS e JavaScript modular, sem build).",
+  "scripts": {
+    "dev": "node dev-server.mjs"
+  }
+}
