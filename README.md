@@ -1,15 +1,24 @@
 # Nodara
 
-Dois sites da marca Nodara, cada um com identidade própria e navegação entre si:
+Dois sites da marca Nodara, com o mesmo sistema visual e navegação entre si:
 
-- **Nodara Support** (`support/`): suporte técnico e serviços de TI para empresas e pessoas.
-  Editorial e calmo: off-white, títulos em serifa (Instrument Serif), botões arredondados.
+- **Nodara Support** (`support/`): suporte técnico e serviços de TI para empresas e pessoas. Azul e violeta.
 - **Nodara Hardware** (`hardware/`): manutenção e reparo de notebooks, desktops, impressoras e
-  impressoras 3D. Técnico e preciso: branco, Geist e Geist Mono, cantos retos.
+  impressoras 3D. Ciano e azul.
 
-A raiz (`index.html`) é uma entrada mínima da marca que leva às duas áreas.
+A raiz (`index.html`) é a entrada da marca, com as duas áreas em destaque.
+
+O visual segue a linguagem de sites de consultoria de tecnologia: abertura com foto e sobreposição
+escura, títulos em caixa alta com gradiente, frases em itálico (Source Serif 4), texto em Rubik,
+vitrine de serviços com rolagem lateral, colunas de serviços, faixas de chamada e rodapé em gradiente.
 
 HTML, CSS e JavaScript modular, sem build e sem dependências.
+
+## Fotos
+
+As fotos vêm do [Wikimedia Commons](https://commons.wikimedia.org), com licenças CC0, domínio público,
+CC BY e CC BY-SA. Autor e licença de cada uma aparecem em "Créditos das fotos", no rodapé de cada site,
+e ficam listados no objeto `FOTOS` de `shared/nodara.js`. Ao trocar uma foto, atualize os dois lugares.
 
 ## Estrutura
 
@@ -17,16 +26,20 @@ HTML, CSS e JavaScript modular, sem build e sem dependências.
 index.html                 entrada da marca
 support/                   Nodara Support: início, servicos/, contato/ (formulário de suporte)
 hardware/                  Nodara Hardware: início, servicos/, orcamento/ (formulário de orçamento)
-shared/base.css            base comum: tipografia, cabeçalho, rodapé, botões, formulários
-shared/nodara.js           <nodara-header>, <nodara-footer>, endereços entre sites, envio dos formulários
-support/support.css        identidade do Support
-hardware/hardware.css      identidade do Hardware
+shared/base.css            sistema visual comum: cabeçalho, abertura, vitrine, seções, formulários, rodapé
+shared/nodara.js           <nodara-header>, <nodara-footer>, menus, vitrines, endereços entre sites, formulários
+support/support.css        cores do Support (e as do Hardware, para a seção que apresenta a outra área)
+hardware/hardware.css      cores do Hardware (e as do Support)
 dev-server.mjs             servidor local que também simula os subdomínios
 _redirects                 regras de subdomínio para produção (Netlify)
 ```
 
 Cada página diz onde está com `<html data-site="support|hardware" data-page="inicio|servicos|contato|orcamento">`.
-O cabeçalho mostra a marca, o seletor **Support / Hardware** e as páginas da área atual.
+O cabeçalho mostra a marca, o menu **Serviços** da área atual, os atalhos da página inicial, o seletor
+**Support / Hardware** e o botão de pedido. No celular, tudo isso fica no menu.
+
+Se `whatsapp` for preenchido em `CONFIG` (`shared/nodara.js`), aparece o botão flutuante do WhatsApp e o
+link no rodapé.
 
 ## Formulários
 
