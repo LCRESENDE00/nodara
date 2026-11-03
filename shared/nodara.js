@@ -1,4 +1,4 @@
-// Nodara: cabeçalho, rodapé, navegação entre sites, vitrines, animações e formulários.
+// Nodara: cabeçalho, rodapé, navegação entre sites, animações e formulários.
 // Cada página carrega <script type="module" src=".../shared/nodara.js"> e diz onde está com
 // <html data-site="marca|support|hardware" data-page="inicio|servicos|contato|orcamento">.
 
@@ -69,6 +69,12 @@ const FOTOS = {
   'hardware-diagnostico': ['Soldering a 0805.jpg', 'Aisart', 'CC BY-SA 3.0'],
   'hardware-pessoa': ['A Ghanaian Computer Hardware Technician.jpg', 'Amuzujoe', 'CC BY-SA 4.0'],
 };
+// fotos que cada site mostra (inclui as da outra área usadas no banner que leva até ela)
+const FOTOS_DO_SITE = {
+  marca: ['support-hero', 'hardware-hero'],
+  support: ['support-pessoa', 'support-tecnico', 'support-redes', 'support-sistemas', 'support-seguranca', 'support-empresas', 'hardware-notebooks'],
+  hardware: ['hardware-pessoa', 'hardware-notebooks', 'hardware-desktops', 'hardware-impressoras', 'hardware-3d', 'hardware-diagnostico', 'support-redes'],
+};
 
 // ---------- endereços ----------
 // "producao" e "local": um subdomínio por site. "caminho": tudo num endereço só, em pastas
@@ -99,31 +105,30 @@ const atual = (cond) => (cond ? ' aria-current="page"' : '');
 
 const ICONE = {
   seta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+  ir: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
   fechar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
   whats: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg>',
 };
 
-function logo(id, escuro = false) {
-  const sub = AREAS[site]?.nome.toLowerCase();
-  const fundo = escuro ? '#fff' : `url(#${id})`;
-  const traco = escuro ? `url(#${id})` : '#fff';
-  const rotulo = sub ? `Nodara ${AREAS[site].nome}, página inicial da Nodara` : 'Nodara, página inicial';
+// Logo da Nodara: o "N" ligando quatro pontos. Os dois pontos coloridos levam a cor da área.
+const CORES_LOGO = { marca: ['#5B21B6', '#C2410C'], support: ['#5B21B6', '#5B21B6'], hardware: ['#C2410C', '#C2410C'] };
+const CORES_LOGO_CLARAS = { marca: ['#A78BFA', '#FB923C'], support: ['#A78BFA', '#A78BFA'], hardware: ['#FB923C', '#FB923C'] };
+function logo(escuro = false) {
+  const [a, b] = (escuro ? CORES_LOGO_CLARAS : CORES_LOGO)[site];
+  const traco = escuro ? '#fff' : '#0B0A12';
+  const area = AREAS[site];
+  const rotulo = area ? `Nodara ${area.nome}, ir para a página inicial da Nodara` : 'Nodara, página inicial';
   return `<a class="nd-logo" href="${url('marca')}" aria-label="${rotulo}">
-      <svg viewBox="0 0 40 40" aria-hidden="true">
-        <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient></defs>
-        <rect width="40" height="40" rx="9" fill="${fundo}"/>
-        <path d="M12.5 28.5v-17l15 17v-17" fill="none" stroke="${traco}" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
-      </svg>
-      <span class="nd-logo-text"><b>NODARA</b>${sub ? `<small class="${escuro ? '' : 'grad-text'}">${sub}</small>` : ''}</span>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 25V7l18 18V7" fill="none" stroke="${traco}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="7" cy="25" r="3.7" fill="${a}"/><circle cx="7" cy="7" r="3.7" fill="${traco}"/><circle cx="25" cy="25" r="3.7" fill="${traco}"/><circle cx="25" cy="7" r="3.7" fill="${b}"/></svg>
+      <b>Nodara</b>${area ? `<span class="nd-area">${area.nome}</span>` : ''}
     </a>`;
 }
 
-const link = ([destino, hash, texto]) => `<a href="${url(destino, hash)}">${texto}</a>`;
 const seletor = () => `
   <nav class="nd-switch" aria-label="Sites Nodara">
-    <a href="${url('support')}"${atual(site === 'support')}>Support</a>
-    <a href="${url('hardware')}"${atual(site === 'hardware')}>Hardware</a>
+    <a href="${url('support')}"${atual(site === 'support')}><span class="dot dot-support" aria-hidden="true"></span>Support</a>
+    <a href="${url('hardware')}"${atual(site === 'hardware')}><span class="dot dot-hardware" aria-hidden="true"></span>Hardware</a>
   </nav>`;
 
 // ---------- <nodara-header> ----------
@@ -131,34 +136,35 @@ class NodaraHeader extends HTMLElement {
   connectedCallback() {
     if (this.firstElementChild) return;
     const area = AREAS[site];
-    let nav, painel, direita;
+    let nav, direita, painel;
     if (area) {
-      const itens = area.servicos.map(([d, h, t, s]) => `<a href="${url(d, h)}"><span>${t}</span><small>${s}</small></a>`).join('');
       const [cd, ch, ct] = area.cta;
+      const itens = area.servicos.map(([d, h, t, s]) => `<a href="${url(d, h)}"><span>${t}</span><small>${s}</small></a>`).join('');
       nav = `
         <div class="nd-drop">
           <button type="button" aria-expanded="false" aria-controls="nd-servicos">Serviços ${ICONE.seta}</button>
-          <div class="nd-menu" id="nd-servicos">${itens}<a class="all" href="${url(site + '/servicos')}"><span>Ver todos os serviços →</span></a></div>
+          <div class="nd-menu" id="nd-servicos">${itens}<a class="all" href="${url(site + '/servicos')}"><span>Ver todos os serviços</span>${ICONE.ir}</a></div>
         </div>
-        ${area.links.map(link).join('')}`;
-      direita = `${seletor()}<a class="btn btn-grad btn-sm" href="${url(cd, ch)}"${atual(cd === site + '/' + pagina)}>${ct}</a>`;
+        ${area.links.map(([d, h, t]) => `<a href="${url(d, h)}">${t}</a>`).join('')}`;
+      direita = `${seletor()}<a class="btn btn-primary btn-sm" href="${url(cd, ch)}"${atual(cd === site + '/' + pagina)}>${ct}</a>`;
       painel = `
         <div class="group"><span>Serviços</span>${area.servicos.map(([d, h, t]) => `<a class="item" href="${url(d, h)}">${t}</a>`).join('')}
           <a class="item" href="${url(site + '/servicos')}">Ver todos os serviços</a></div>
         ${area.links.map(([d, h, t]) => `<a class="top-item" href="${url(d, h)}">${t}</a>`).join('')}
         ${seletor()}
-        <a class="btn btn-grad" href="${url(cd, ch)}">${ct}</a>`;
+        <a class="btn btn-primary" href="${url(cd, ch)}">${ct}</a>`;
     } else {
-      nav = `<a href="${url('support')}">Nodara Support</a><a href="${url('hardware')}">Nodara Hardware</a>`;
+      const links = `<a href="${url('support')}"><span class="dot dot-support" aria-hidden="true"></span>Nodara Support</a><a href="${url('hardware')}"><span class="dot dot-hardware" aria-hidden="true"></span>Nodara Hardware</a>`;
+      nav = links;
       direita = '';
-      painel = `<a class="top-item" href="${url('support')}">Nodara Support</a><a class="top-item" href="${url('hardware')}">Nodara Hardware</a>`;
+      painel = links.replaceAll('<a ', '<a class="top-item" ');
     }
 
     this.innerHTML = `
       <a href="#conteudo" class="skip">Pular para o conteúdo</a>
       <header class="nd-header">
         <div class="wrap nd-bar">
-          ${logo('nd-logo-h')}
+          ${logo()}
           <nav class="nd-nav" aria-label="Principal">${nav}</nav>
           <div class="nd-right">
             ${direita}
@@ -180,6 +186,7 @@ class NodaraHeader extends HTMLElement {
       drop.setAttribute('aria-expanded', String(abrir));
       menu.classList.toggle('open', abrir);
     });
+    menu?.addEventListener('click', (e) => { if (e.target.closest('a')) fecharMenu(); });
 
     // menu do celular
     const burger = this.querySelector('.nd-burger');
@@ -193,7 +200,6 @@ class NodaraHeader extends HTMLElement {
       burger.innerHTML = abrir ? ICONE.fechar : ICONE.menu;
     });
     panel.addEventListener('click', (e) => { if (e.target.closest('a')) fecharPainel(); });
-    menu?.addEventListener('click', (e) => { if (e.target.closest('a')) fecharMenu(); });
 
     document.addEventListener('click', (e) => { if (drop && !e.target.closest('.nd-drop')) fecharMenu(); });
     document.addEventListener('keydown', (e) => {
@@ -214,27 +220,26 @@ class NodaraFooter extends HTMLElement {
       CONFIG.emailPedidos && `<li><a href="mailto:${CONFIG.emailPedidos}">${CONFIG.emailPedidos}</a></li>`,
       CONFIG.whatsapp && `<li><a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener">WhatsApp</a></li>`,
     ].filter(Boolean).join('');
-    const chaves = site === 'marca' ? ['support-hero', 'hardware-hero'] : Object.keys(FOTOS).filter((k) => k.startsWith(site + '-'));
-    const creditos = chaves.map((k) => {
+    const creditos = FOTOS_DO_SITE[site].map((k) => {
       const [arquivo, autor, licenca] = FOTOS[k];
       const pagina = 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(arquivo.replace(/ /g, '_'));
       const lic = LICENCAS[licenca] ? `<a href="${LICENCAS[licenca]}" target="_blank" rel="noopener">${licenca}</a>` : licenca;
       return `<li><a href="${pagina}" target="_blank" rel="noopener">${arquivo.replace(/\.\w+$/, '')}</a> · ${autor} · ${lic}</li>`;
     }).join('');
-    const cta = area ? `<a class="btn btn-sm cta" href="${url(area.cta[0])}">${area.cta[2]}</a>` : '';
+    const cta = area ? `<a class="btn btn-white btn-sm cta" href="${url(area.cta[0])}">${area.cta[2]}</a>` : '';
 
     this.innerHTML = `
       <footer class="nd-footer">
         <div class="wrap top">
           <div>
-            ${logo('nd-logo-f', true)}
-            <p class="about">${area ? area.sobre : 'Tecnologia para empresas e pessoas.'} ${CONFIG.cidade}.</p>
+            ${logo(true)}
+            <p class="about">${area ? area.sobre : 'Suporte de TI e manutenção de equipamentos para empresas e pessoas.'} ${CONFIG.cidade}.</p>
             ${cta}
           </div>
-          <nav aria-labelledby="ft-support"><h2 id="ft-support">Nodara Support</h2><ul>
+          <nav aria-labelledby="ft-support"><h2 id="ft-support"><span class="dot dot-support" aria-hidden="true"></span>Nodara Support</h2><ul>
             ${li('support', '', 'Início')}${li('support/servicos', '', 'Serviços')}${li('support', '#como-funciona', 'Como funciona')}${li('support/contato', '', 'Solicitar suporte')}
           </ul></nav>
-          <nav aria-labelledby="ft-hardware"><h2 id="ft-hardware">Nodara Hardware</h2><ul>
+          <nav aria-labelledby="ft-hardware"><h2 id="ft-hardware"><span class="dot dot-hardware" aria-hidden="true"></span>Nodara Hardware</h2><ul>
             ${li('hardware', '', 'Início')}${li('hardware/servicos', '', 'Serviços')}${li('hardware', '#processo', 'Como funciona')}${li('hardware/orcamento', '', 'Solicitar orçamento')}
           </ul></nav>
           <nav aria-labelledby="ft-nodara"><h2 id="ft-nodara">Nodara</h2><ul>
@@ -258,23 +263,6 @@ customElements.define('nodara-footer', NodaraFooter);
 // já funciona por pastas; aqui ele vira o endereço certo do ambiente (subdomínio, file://).
 for (const a of document.querySelectorAll('a[data-nd]')) {
   a.href = url(a.dataset.nd, a.dataset.ndHash || '');
-}
-
-// ---------- vitrines com rolagem lateral ----------
-for (const bloco of document.querySelectorAll('[data-rail]')) {
-  const trilho = bloco.querySelector('.rail');
-  const ant = bloco.querySelector('[data-prev]');
-  const prox = bloco.querySelector('[data-next]');
-  const passo = () => (trilho.firstElementChild?.getBoundingClientRect().width || 280) + 20;
-  const atualizar = () => {
-    ant.disabled = trilho.scrollLeft <= 2;
-    prox.disabled = trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 2;
-  };
-  ant.addEventListener('click', () => trilho.scrollBy({ left: -passo() }));
-  prox.addEventListener('click', () => trilho.scrollBy({ left: passo() }));
-  trilho.addEventListener('scroll', atualizar, { passive: true });
-  addEventListener('resize', atualizar);
-  atualizar();
 }
 
 // ---------- entrada suave ao rolar ----------

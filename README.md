@@ -2,15 +2,15 @@
 
 Dois sites da marca Nodara, com o mesmo sistema visual e navegação entre si:
 
-- **Nodara Support** (`support/`): suporte técnico e serviços de TI para empresas e pessoas. Azul e violeta.
+- **Nodara Support** (`support/`): suporte técnico e serviços de TI para empresas e pessoas. Roxo.
 - **Nodara Hardware** (`hardware/`): manutenção e reparo de notebooks, desktops, impressoras e
-  impressoras 3D. Ciano e azul.
+  impressoras 3D. Laranja.
 
-A raiz (`index.html`) é a entrada da marca, com as duas áreas em destaque.
+A raiz (`index.html`) é a entrada da marca, com as duas áreas lado a lado.
 
-O visual segue a linguagem de sites de consultoria de tecnologia: abertura com foto e sobreposição
-escura, títulos em caixa alta com gradiente, frases em itálico (Source Serif 4), texto em Rubik,
-vitrine de serviços com rolagem lateral, colunas de serviços, faixas de chamada e rodapé em gradiente.
+A estrutura das páginas segue a de sites de empresas de tecnologia (abertura forte, serviços em
+destaque, compromissos, processo, dúvidas e chamada final), com a identidade da Nodara: preto, branco
+e a cor de cada área, o logo do "N" com quatro pontos, Plus Jakarta Sans e rótulos em IBM Plex Mono.
 
 HTML, CSS e JavaScript modular, sem build e sem dependências.
 
@@ -26,9 +26,9 @@ e ficam listados no objeto `FOTOS` de `shared/nodara.js`. Ao trocar uma foto, at
 index.html                 entrada da marca
 support/                   Nodara Support: início, servicos/, contato/ (formulário de suporte)
 hardware/                  Nodara Hardware: início, servicos/, orcamento/ (formulário de orçamento)
-shared/base.css            sistema visual comum: cabeçalho, abertura, vitrine, seções, formulários, rodapé
-shared/nodara.js           <nodara-header>, <nodara-footer>, menus, vitrines, endereços entre sites, formulários
-support/support.css        cores do Support (e as do Hardware, para a seção que apresenta a outra área)
+shared/base.css            sistema visual comum: cabeçalho, abertura, grade de serviços, seções, formulários, rodapé
+shared/nodara.js           <nodara-header>, <nodara-footer>, menus, endereços entre sites, formulários
+support/support.css        cores do Support (e as do Hardware, para o banner que leva até ele)
 hardware/hardware.css      cores do Hardware (e as do Support)
 dev-server.mjs             servidor local que também simula os subdomínios
 _redirects                 regras de subdomínio para produção (Netlify)

@@ -1,20 +1,13 @@
-/* Nodara Hardware: ciano e azul, com destaque laranja. As cores "other" são as do Support, usadas na seção que apresenta a outra área. */
+/* Nodara Hardware: laranja. As cores "other" são as do Support, usadas no banner que leva até ele. */
 :root {
-  --c1: #0E7490;
-  --c2: #2563EB;
-  --deep: #082F49;
-  --deep-2: #0B2A5B;
-  --link: #0369A1;
-  --kicker: #C2410C;
-  --tint: #CFFAFE;
-  --rule-1: #F59E0B;
-  --rule-2: #06B6D4;
-  --field: #ECFEFF;
+  --accent: #C2410C;
+  --accent-strong: #9A3412;
+  --accent-light: #FDBA74;
+  --accent-soft: #FFF1E8;
+  --accent-line: #FED7AA;
 
-  --other-1: #1E40AF;
-  --other-2: #7C3AED;
-  --other-deep: #172554;
-  --other-deep-2: #1E1B4B;
-  --other-tint: #DBEAFE;
-  --other-link: #1D4ED8;
+  --other: #5B21B6;
+  --other-strong: #4C1D95;
+  --other-dark: #1E1035;
+  --other-light: #C4B5FD;
 }
